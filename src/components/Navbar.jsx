@@ -8,24 +8,37 @@ const navigation = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Experience', href: '#experience'},
   { name: 'Contact Info', href: '#contact' },
 ]
+
+const skills = [
+  { title: 'Java', image: '/java-original.svg' },
+  { title: 'C', image: '/c-original.svg' },
+  { title: 'Spring', image: '/spring-original.svg' },
+  { title: 'Docker', image: '/docker-original.svg' },
+  { title: 'Git', image: '/git-original.svg' },
+  { title: 'React', image: '/react-original.svg' },
+  { title: 'MySql', image: '/mysql-original.svg' },
+  { title: 'Linux', image: '/linux-original.svg' },
+  { title: 'Node.js', image: '/nodejs-original-wordmark.svg' },
+  { title: 'HTML', image: '/html5-original.svg' },
+];
+
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-white">
-      <header className="absolute inset-x-0 top-0 z-50 bg-gray-800">
+    <div className="max-h-max">
+      <header className="fixed inset-x-0 top-0 z-50 bg-gray-800">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+            <a href="#home" className="-m-1.5 p-1.5">
+              <span className="sr-only">Hunt Tynch</span>
+              <p className="dark:text-gray-200 light:text-gray-400 font-mono font-light text-lg">
+                Hunt Tynch
+              </p>
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -46,10 +59,10 @@ export default function Example() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            {/* Profile dropdown */}
+            {/* Contact dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
-                <MenuButton className="bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <MenuButton className="min-w-[150px] justify-center bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open contact menu</span>
                   Contact Me
@@ -57,7 +70,7 @@ export default function Example() {
               </div>
               <MenuItems
                 transition
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                className="absolute max-w-[150px] z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
                   <a
@@ -69,7 +82,7 @@ export default function Example() {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="www.linkedin.com/in/hunt-tynch"
+                    href="https://www.linkedin.com/in/hunt-tynch"
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     LinkedIn
@@ -92,7 +105,7 @@ export default function Example() {
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
+                <span className="sr-only">Picture</span>
                 <img
                   alt=""
                   src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
@@ -121,14 +134,6 @@ export default function Example() {
                     </a>
                   ))}
                 </div>
-                <div className="py-6">
-                  <a
-                    href="#contact"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Contact Me
-                  </a>
-                </div>
               </div>
             </div>
           </DialogPanel>
@@ -136,6 +141,7 @@ export default function Example() {
       </header>
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
+        {/* First Polygon */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -148,37 +154,8 @@ export default function Example() {
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-600">
-                <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </div>
-          <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-              Data to enrich your online business
-            </h1>
-            <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
+
+        {/* Second Polygon */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -190,6 +167,119 @@ export default function Example() {
             }}
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           />
+        </div>
+
+        {/* Third Polygon */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-[calc(50%-10rem)] -z-10 transform-gpu overflow-hidden blur-3xl"
+        >
+          <div
+            style={{
+              clipPath:
+                'polygon(30% 40%, 70% 50%, 100% 70%, 80% 100%, 20% 80%, 10% 50%, 30% 40%)',
+            }}
+            className="relative left-[calc(50%-5rem)] aspect-[1155/678] w-[24.125rem] -translate-x-1/2 rotate-45 bg-gradient-to-bl from-[#34d399] to-[#10b981] opacity-25 sm:left-[calc(50%-20rem)] sm:w-[48.1875rem]"
+          />
+        </div>
+
+        {/* Fourth Polygon */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-[calc(25%-5rem)] -z-10 transform-gpu overflow-hidden blur-3xl"
+        >
+          <div
+            style={{
+              clipPath:
+                'polygon(40% 30%, 90% 40%, 100% 80%, 70% 100%, 30% 90%, 10% 50%, 40% 30%)',
+            }}
+            className="relative left-[calc(50%+10rem)] aspect-[1155/678] w-[28.125rem] -translate-x-1/2 rotate-[-30deg] bg-gradient-to-br from-[#facc15] to-[#f59e0b] opacity-25 sm:left-[calc(50%+25rem)] sm:w-[56.1875rem]"
+          />
+        </div>
+
+        {/* Main Content */}
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="home">
+          <div className="text-center">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+              Hi, I am Hunt Tynch!
+            </h1>
+            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+              A senior graduating from North Carolina State University with a
+              bachelor's degree in Computer Science.
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="about">
+          <div className="text-center">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+              About
+            </h1>
+            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+              Hi, I’m Hunt Tynch; A Software Engineer passionate about backend development and building robust, scalable systems. With expertise in Java, C, and frameworks like Spring, I specialize in creating efficient APIs, data-driven applications, and server-side solutions that power seamless user experiences.
+              I earned my Bachelor’s in Computer Science from NC State University, where I honed my skills in software design, algorithms, and system architecture. My academic projects and hands-on experience have deepened my understanding of creating clean, maintainable code for real-world applications.
+              When I’m not solving coding challenges, I enjoy gaming and playing basketball, which keeps me energized and focused. I’m always excited to collaborate, tackle new technologies, and deliver impactful software solutions.
+              Check out my projects below or reach out to start a conversation—I’d love to connect!
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="skills">
+          <div className="text-center">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+              Skills
+            </h1>
+            <div className="flex items-center justify-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-5">
+                {skills.map((skill, index) => (
+                  <div
+                    key={index}
+                    className="w-full mx-auto rounded-lg shadow-xl bg-gray-300 p-6 transform transition-transform duration-300 hover:scale-110"
+                  >
+                    <div className="flex items-center justify-center mt-7">
+                      <img
+                        src={skill.image}
+                        alt={skill.title}
+                        className="h-24 w-24 object-contain"
+                      />
+                    </div>
+                    <h3 className="mt-7 text-center text-lg font-semibold text-gray-900">
+                      {skill.title}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="projects">
+          <div className="text-center">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+              Projects
+            </h1>
+            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="experience">
+          <div className="text-center">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+              Experience
+            </h1>
+            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="contact">
+          <div className="text-center">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+              Contact Info
+            </h1>
+            <h3 className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+              Email: <a href="mailto:tynchhunt@gmail.com">tynchhunt@gmail.com</a>
+            </h3>
+            <h3 className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+              LinkedIn: <a href="https://www.linkedin.com/in/hunt-tynch">https://www.linkedin.com/in/hunt-tynch</a>
+            </h3>
+          </div>
         </div>
       </div>
     </div>
