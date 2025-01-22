@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Button, Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
@@ -23,6 +23,16 @@ const skills = [
   { title: 'Linux', image: '/linux-original.svg' },
   { title: 'Node.js', image: '/nodejs-original-wordmark.svg' },
   { title: 'HTML', image: '/html5-original.svg' },
+];
+
+const experience = [
+  { title: 'R&D Summer Employee', company: 'Avoca LLC.', location: 'Merry Hill, NC', dates: 'May-Jun 2023', description: "Worked in the R&D Department of Ashland’s specialty extraction division, Avoca LLC. Researched DNA sequencing of transgenic sage plants to achieve higher sclareol yields. Collected and organized data into Excel. Worked in the greenhouse and multiple farming plots to upkeep crops, gather samples, etc.", image: '/sage.jpg'},
+  { title: 'R&D Summer Employee', company: 'Avoca LLC.', location: 'Merry Hill, NC', dates: 'May-Jun 2024', description: "Worked in the R&D Department of Ashland’s specialty extraction division, Avoca LLC. Researched DNA sequencing of transgenic sage plants to achieve higher sclareol yields. Collected and organized data into Excel. Worked in the greenhouse and multiple farming plots to upkeep crops, gather samples, etc.", image: '/sage.jpg'}
+];
+
+const projects = [
+  { title: 'Foxhound Scoring Software', description: 'Created an updated score tracking software for foxhound field trials. Stores dog crosses and information throughout the hunt, and displays point totals as well as other various details.', tools: 'Java, Spring Boot, Docker, MySQL, React', href: 'https://github.com/hctynch/mastersgtp'},
+  { title: 'Upcoming Project (ML Routing System)', description: '...', tools: '...', href: '#'},
 ];
 
 
@@ -62,7 +72,7 @@ export default function Example() {
             {/* Contact dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
-                <MenuButton className="min-w-[150px] justify-center bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <MenuButton className="min-w-[150px] hover:bg-blue-600 justify-center bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open contact menu</span>
                   Contact Me
@@ -129,6 +139,7 @@ export default function Example() {
                       key={item.name}
                       href={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
                     </a>
@@ -200,6 +211,12 @@ export default function Example() {
         {/* Main Content */}
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="home">
           <div className="text-center">
+            <div className="flex justify-center items-center mb-10">
+            <img 
+              src="/centered_pic.jpeg"
+              className="sm:h-[250px] lg:h-[500px] shadow-xl rounded-full"
+            />
+            </div>
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Hi, I am Hunt Tynch!
             </h1>
@@ -209,7 +226,7 @@ export default function Example() {
             </p>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="about">
+        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="about">
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               About
@@ -222,7 +239,7 @@ export default function Example() {
             </p>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="skills">
+        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="skills">
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Skills
@@ -250,25 +267,72 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="projects">
+        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="projects">
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Projects
             </h1>
-            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
-            </p>
+            <div className="grid grid-cols-2 gap-8 mt-5">
+              {projects.map((project, index) => (
+                <div
+                key={index}
+                className="w-full mx-auto rounded-lg shadow-xl bg-gray-300 p-6 transform transition-transform duration-300 hover:scale-110"  
+                >
+                  <h2 className="text-gray-900 font-bold font-mono text-[20px]">
+                    {project.title}
+                  </h2>
+                  <h2 className="text-gray-900 font-semibold font-mono italic mt-2">
+                    Stack: [{project.tools}]
+                  </h2>
+                  <p className="mt-8 text-pretty text-lg font-mono text-gray-900">
+                    {project.description}
+                  </p>
+                  <Button className='mt-5  hover:bg-blue-600 bg-blue-500 rounded-full shadow-sm shadow-gray-600'>
+                    <a href={project.href} className="text-white hover:text-white">
+                      Go to repo &rarr;
+                    </a>
+                  </Button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="experience">
+        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="experience">
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Experience
             </h1>
-            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
-            </p>
+            <div className="grid grid-cols-2 gap-8 mt-5">
+              {experience.map((experience, index) => (
+                <div
+                key={index}
+                className="w-full mx-auto rounded-lg shadow-xl bg-gray-300 p-6 transform transition-transform duration-300 hover:scale-110"  
+                >
+                  <h2 className="text-gray-900 font-bold font-mono text-[20px]">
+                    {experience.title}
+                  </h2>
+                  <h2 className="text-gray-900 font-bold font-mono">
+                    {experience.dates}
+                  </h2>
+                  <img
+                    src={experience.image}
+                    className="shadow-sm shadow-black rounded-xl"
+                  />
+                  <h2 className="text-gray-900 font-bold font-mono">
+                    {experience.company}
+                  </h2>
+                  <h2 className="text-gray-900 font-bold font-mono">
+                    {experience.location}
+                  </h2>
+                  <p className="mt-8 text-pretty text-lg font-mono text-gray-900">
+                    {experience.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="contact">
+        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="contact">
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Contact Info
