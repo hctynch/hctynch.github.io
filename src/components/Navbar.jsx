@@ -272,7 +272,7 @@ export default function Example() {
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Projects
             </h1>
-            <div className="grid grid-cols-2 gap-8 mt-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
               {projects.map((project, index) => (
                 <div
                 key={index}
@@ -302,7 +302,7 @@ export default function Example() {
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
               Experience
             </h1>
-            <div className="grid grid-cols-2 gap-8 mt-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
               {experience.map((experience, index) => (
                 <div
                 key={index}
