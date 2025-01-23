@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const PacmanWithGhost = () => {
   // Start Pac-Man and ghost in the bottom-left corner
@@ -10,6 +10,27 @@ const PacmanWithGhost = () => {
     top: window.innerHeight - 60,
     left: 75,
   });
+
+  // Recalculate positions on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setPacmanPosition((prev) => ({
+        ...prev,
+        top: window.innerHeight - 60,
+      }));
+      setGhostPosition((prev) => ({
+        ...prev,
+        top: window.innerHeight - 60,
+      }));
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const pacmanInterval = setInterval(() => {

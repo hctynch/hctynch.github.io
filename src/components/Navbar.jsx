@@ -1,8 +1,6 @@
-'use client'
-
-import { Button, Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { Button, Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 const navigation = [
   { name: 'About', href: '#about' },
@@ -69,6 +67,11 @@ export default function Example() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="/Hunt_Tynch_Resume.pdf" download>
+              <Button className="min-w-[150px] hover:bg-blue-600 justify-center bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
+                Resume
+              </Button>
+            </a>
             {/* Contact dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
@@ -144,6 +147,14 @@ export default function Example() {
                       {item.name}
                     </a>
                   ))}
+                  <a 
+                    href="/Hunt_Tynch_Resume.pdf" 
+                    download 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  >
+                    Resume
+                  </a>
                 </div>
               </div>
             </div>
@@ -221,8 +232,7 @@ export default function Example() {
               Hi, I am Hunt Tynch!
             </h1>
             <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
-              A senior graduating from North Carolina State University with a
-              bachelor's degree in Computer Science.
+              A senior graduating from North Carolina State University with a bachelor's degree in Computer Science.
             </p>
           </div>
         </div>
