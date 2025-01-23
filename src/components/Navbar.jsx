@@ -24,13 +24,14 @@ const skills = [
 ];
 
 const experience = [
-  { title: 'R&D Summer Employee', company: 'Avoca LLC.', location: 'Merry Hill, NC', dates: 'May-Jun 2023', description: "Worked in the R&D Department of Ashland’s specialty extraction division, Avoca LLC. Researched DNA sequencing of transgenic sage plants to achieve higher sclareol yields. Collected and organized data into Excel. Worked in the greenhouse and multiple farming plots to upkeep crops, gather samples, etc.", image: '/sage.jpg'},
-  { title: 'R&D Summer Employee', company: 'Avoca LLC.', location: 'Merry Hill, NC', dates: 'May-Jun 2024', description: "Worked in the R&D Department of Ashland’s specialty extraction division, Avoca LLC. Researched DNA sequencing of transgenic sage plants to achieve higher sclareol yields. Collected and organized data into Excel. Worked in the greenhouse and multiple farming plots to upkeep crops, gather samples, etc.", image: '/sage.jpg'}
+  { title: 'R&D Summer Employee', company: 'Avoca LLC.', location: 'Merry Hill, NC', dates: 'May-Jun 2023', description: ['Worked in the R&D Department of Ashland’s specialty extraction division, Avoca LLC.', 'Researched DNA sequencing of transgenic sage plants to achieve higher sclareol yields.', 'Collected and organized data into Excel.', 'Worked in the greenhouse and multiple farming plots to upkeep crops, gather samples, etc.'], image: '/sage.jpg'},
+  { title: 'R&D Summer Employee', company: 'Avoca LLC.', location: 'Merry Hill, NC', dates: 'May-Jun 2024', description: ['Worked in the R&D Department of Ashland’s specialty extraction division, Avoca LLC.', 'Researched DNA sequencing of transgenic sage plants to achieve higher sclareol yields.', 'Collected and organized data into Excel.', 'Worked in the greenhouse and multiple farming plots to upkeep crops, gather samples, etc.'], image: '/sage.jpg'}
 ];
 
 const projects = [
-  { title: 'Foxhound Scoring Software', description: 'Created an updated score tracking software for foxhound field trials. Stores dog crosses and information throughout the hunt, and displays point totals as well as other various details.', tools: 'Java, Spring Boot, Docker, MySQL, React', href: 'https://github.com/hctynch/mastersgtp'},
-  { title: 'Upcoming Project (ML Routing System)', description: '...', tools: '...', href: '#'},
+  { title: 'Portfolio Website', description: ['Created this personal portfolio using React, Vite, and TailwindCSS.', 'Utilizes github actions to redeploy updated build to github pages upon commit.'], tools: 'React, Vite, TailwindCSS, Github, Github Actions', href: 'https://github.com/hctynch/hctynch.github.io'},
+  { title: 'Foxhound Scoring Software', description: ['Created an updated score tracking software for foxhound field trials.', 'Stores dog crosses and information throughout the hunt, and displays point totals as well as other various details.'], tools: 'Java, Spring Boot, Docker, MySQL, React', href: 'https://github.com/hctynch/mastersgtp'},
+  { title: 'Upcoming Project (ML Routing System)', description: [], tools: '...', href: '#'},
 ];
 
 
@@ -294,9 +295,16 @@ export default function Example() {
                   <h2 className="text-gray-900 font-semibold font-mono italic mt-2">
                     Stack: [{project.tools}]
                   </h2>
-                  <p className="mt-8 text-pretty text-lg font-mono text-gray-900">
-                    {project.description}
-                  </p>
+                  <ul style={{ listStyleType: 'disc'}}>
+                    {project.description.map((descrip, index) => (
+                      <li
+                        key={index}
+                        className="mt-5 text-pretty text-lg font-mono text-gray-900"
+                      >
+                        {descrip}
+                      </li>
+                    ))}
+                  </ul>
                   <Button className='mt-5  hover:bg-blue-600 bg-blue-500 rounded-full shadow-sm shadow-gray-600'>
                     <a href={project.href} className="text-white hover:text-white">
                       Go to repo &rarr;
@@ -334,9 +342,16 @@ export default function Example() {
                   <h2 className="text-gray-900 font-bold font-mono">
                     {experience.location}
                   </h2>
-                  <p className="mt-8 text-pretty text-lg font-mono text-gray-900">
-                    {experience.description}
-                  </p>
+                  <ul style={{ listStyleType: 'disc'}}>
+                    {experience.description.map((descrip, index) => (
+                      <li
+                        key={index}
+                        className="mt-5 text-pretty text-lg font-mono text-gray-900"
+                      >
+                        {descrip}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
