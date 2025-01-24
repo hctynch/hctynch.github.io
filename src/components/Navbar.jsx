@@ -2,6 +2,7 @@ import { Button, Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { AiFillInstagram, AiFillLinkedin, AiFillMail } from 'react-icons/ai';
+import { FaHome } from 'react-icons/fa';
 import PacmanToggle from './PacmanToggle';
 
 const navigation = [
@@ -163,7 +164,7 @@ export default function Example() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black bg-emerald-400"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="size-6" />
@@ -171,7 +172,7 @@ export default function Example() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-gray-200">
+              <a key={item.name} href={item.href} className="font-Inter text-md font-semibold text-gray-200">
                 {item.name}
               </a>
             ))}
@@ -186,7 +187,7 @@ export default function Example() {
               download
               className="lg:block"
             >
-              <Button className="min-w-[150px] hover:to-cyan-600 hover:from-emerald-700 justify-center from-emerald-500 to-cyan-500 bg-gradient-to-br text-black relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
+              <Button className="min-w-[150px] font-Inter hover:to-cyan-600 hover:from-emerald-700 justify-center from-emerald-500 to-cyan-500 bg-gradient-to-br text-black relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
                 Resume
               </Button>
             </a>
@@ -197,20 +198,15 @@ export default function Example() {
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-300 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Picture</span>
-                <img
-                  alt=""
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                  className="h-8 w-auto"
-                />
+              <a href="#" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
+                <FaHome className="h-10 w-auto text-emerald-400"/>
               </a>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                className="-m-2.5 rounded-md p-2.5 text-black bg-emerald-400"
               >
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon aria-hidden="true" className="size-6" />
@@ -223,7 +219,7 @@ export default function Example() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-emerald-400"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -233,7 +229,7 @@ export default function Example() {
                     href="/Hunt_Tynch_Resume.pdf" 
                     download 
                     onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-emerald-400"
                   >
                     Resume
                   </a>
@@ -310,7 +306,7 @@ export default function Example() {
               className="h-[250px] w-[250px] lg:w-[500px] lg:h-[500px] object-cover object-top shadow-xl rounded-full"
             />
             </div>
-            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Hi, I am Hunt Tynch!
             </h1>
             <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
@@ -320,7 +316,7 @@ export default function Example() {
         </div>
         <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="about">
           <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               About
             </h1>
             <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
@@ -333,7 +329,7 @@ export default function Example() {
         </div>
         <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="skills">
           <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Skills
             </h1>
             <div className="flex items-center justify-center">
@@ -361,7 +357,7 @@ export default function Example() {
         </div>
         <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="projects">
           <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Projects
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
@@ -398,7 +394,7 @@ export default function Example() {
         </div>
         <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="experience">
           <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Experience
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
@@ -438,17 +434,18 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="fixed top-1/2 -translate-y-1/2 left-6 z-50">
+        <div className="fixed bottom-2 left-2 lg:top-1/2 lg:-translate-y-20 lg:left-6 z-50">
           <div className="flex flex-col items-center gap-6">
             {/* Email */}
             <a href="mailto:tynchhunt@gmail.com" target="_blank" rel="noopener noreferrer">
               <AiFillMail className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
             </a>
-            
+
             {/* LinkedIn */}
             <a href="https://www.linkedin.com/in/hunt-tynch" target="_blank" rel="noopener noreferrer">
               <AiFillLinkedin className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
             </a>
+
             {/* Instagram */}
             <a href="https://www.instagram.com/h.tynch04" target="_blank" rel="noopener noreferrer">
               <AiFillInstagram className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
