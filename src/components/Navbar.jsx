@@ -290,7 +290,7 @@ export default function Example() {
             className="relative left-[calc(50%+10rem)] aspect-[1155/678] w-[28.125rem] -translate-x-1/2 rotate-[-30deg] bg-gradient-to-br from-[#facc15] to-[#f59e0b] opacity-25 sm:left-[calc(50%+25rem)] sm:w-[56.1875rem]"
           />
         </div>
-
+        <div className="max-w-48 md:max-w-96 lg:max-w-full">
         {/* Main Content */}
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="home" ref={(el) => (sectionRefs.current[4] = el)}>
           <div className="text-center">
@@ -446,8 +446,9 @@ export default function Example() {
             </a>
           </div>
         </div>
+        </div>
       </div>
       {showPacman && <PacmanWithGhost/>}
-    </div>
+      </div>
   )
 }
