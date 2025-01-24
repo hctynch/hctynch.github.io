@@ -1,13 +1,14 @@
-import { Button, Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Button, Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AiFillInstagram, AiFillLinkedin, AiFillMail } from 'react-icons/ai';
+import PacmanToggle from './PacmanToggle';
 
 const navigation = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience'},
-  { name: 'Contact Info', href: '#contact' },
 ]
 
 const skills = [
@@ -37,15 +38,123 @@ const projects = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showPacman, setShowPacman] = useState(false);
+
+  const PacmanWithGhost = () => {
+    // Start Pac-Man and ghost in the bottom-left corner
+    const [pacmanPosition, setPacmanPosition] = useState({
+      top: window.innerHeight - 60,
+      left: 0,
+    });
+    const [ghostPosition, setGhostPosition] = useState({
+      top: window.innerHeight - 60,
+      left: 75,
+    });
+  
+    // Recalculate positions on resize
+    useEffect(() => {
+      const handleResize = () => {
+        setPacmanPosition((prev) => ({
+          ...prev,
+          top: window.innerHeight - 60,
+        }));
+        setGhostPosition((prev) => ({
+          ...prev,
+          top: window.innerHeight - 60,
+        }));
+      };
+  
+      window.addEventListener("resize", handleResize);
+  
+      // Cleanup event listener
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+  
+    useEffect(() => {
+      const pacmanInterval = setInterval(() => {
+        setPacmanPosition((prev) => {
+          let newLeft = prev.left;
+          const screenWidth = window.innerWidth; // Full screen width
+  
+          // Move Pac-Man to the right and reset to the left when off-screen
+          if (newLeft > screenWidth) {
+            newLeft = -60; // Reset to just off the left-hand side
+          } else {
+            newLeft += 3; // Movement speed
+          }
+  
+          return { ...prev, left: newLeft };
+        });
+      }, 50);
+  
+      return () => clearInterval(pacmanInterval);
+    }, []);
+  
+    useEffect(() => {
+      const ghostInterval = setInterval(() => {
+        setGhostPosition((prev) => {
+          let newLeft = prev.left;
+          const screenWidth = window.innerWidth; // Full screen width
+  
+          // Move Ghost to the right and reset to the left when off-screen
+          if (newLeft > screenWidth) {
+            newLeft = -60; // Reset to just off the left-hand side
+          } else {
+            newLeft += 3; // Movement speed
+          }
+  
+          return { ...prev, left: newLeft };
+        });
+      }, 50);
+  
+      return () => clearInterval(ghostInterval);
+    }, []);
+  
+    return (
+      <div>
+        {/* Pac-Man */}
+        <div
+          className="absolute z-[51]"
+          style={{
+            top: `${pacmanPosition.top}px`,
+            left: `${pacmanPosition.left}px`,
+          }}
+        >
+          <img
+            src="/XOsf.gif"
+            alt="Pac-Man"
+            className="fixed h-12 w-12"
+          />
+        </div>
+  
+        {/* Ghost */}
+        <div
+          className="absolute z-[51]"
+          style={{
+            top: `${ghostPosition.top}px`,
+            left: `${ghostPosition.left}px`,
+          }}
+        >
+          <img
+            src="/iHG.gif"
+            alt="Ghost"
+            className="fixed h-12 w-12"
+          />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="max-h-max">
-      <header className="fixed inset-x-0 top-0 z-50 bg-gray-800">
+      <header className="fixed inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
             <a href="#home" className="-m-1.5 p-1.5">
               <span className="sr-only">Hunt Tynch</span>
-              <p className="dark:text-gray-200 light:text-gray-400 font-mono font-light text-lg">
+              <p className="text-emerald-400 font-Inter font-bold text-3xl">
                 Hunt Tynch
               </p>
             </a>
@@ -67,51 +176,23 @@ export default function Example() {
               </a>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/Hunt_Tynch_Resume.pdf" download>
-              <Button className="min-w-[150px] hover:bg-blue-600 justify-center bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
+            {/* Pacman Toggle - Always visible */}
+            <PacmanToggle onChange={setShowPacman} />
+            
+            {/* Resume Button - Visible only on large screens */}
+            <a
+              href="/Hunt_Tynch_Resume.pdf"
+              download
+              className="lg:block"
+            >
+              <Button className="min-w-[150px] hover:to-cyan-600 hover:from-emerald-700 justify-center from-emerald-500 to-cyan-500 bg-gradient-to-br text-black relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
                 Resume
               </Button>
             </a>
-            {/* Contact dropdown */}
-            <Menu as="div" className="relative ml-3">
-              <div>
-                <MenuButton className="min-w-[150px] hover:bg-blue-600 justify-center bg-blue-500 relative text-white flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open contact menu</span>
-                  Contact Me
-                </MenuButton>
-              </div>
-              <MenuItems
-                transition
-                className="absolute max-w-[150px] z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-              >
-                <MenuItem>
-                  <a
-                    href="mailto:tynchhunt@gmail.com"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    Email
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="https://www.linkedin.com/in/hunt-tynch"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    LinkedIn
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="https://www.instagram.com/h.tynch04"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    Instagram
-                  </a>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
+          </div>
+          <div className="fixed right-20 z-50 top-8 lg:hidden">
+            <PacmanToggle onChange={setShowPacman} />
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -226,7 +307,7 @@ export default function Example() {
             <div className="flex justify-center items-center mb-10">
             <img 
               src="/centered_pic.jpeg"
-              className="sm:h-[250px] lg:h-[500px] shadow-xl rounded-full"
+              className="h-[250px] w-[250px] lg:w-[500px] lg:h-[500px] object-cover object-top shadow-xl rounded-full"
             />
             </div>
             <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
@@ -357,20 +438,25 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="contact">
-          <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight light:text-gray-900 dark:text-gray-200 sm:text-7xl">
-              Contact Info
-            </h1>
-            <h3 className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
-              Email: <a href="mailto:tynchhunt@gmail.com">tynchhunt@gmail.com</a>
-            </h3>
-            <h3 className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
-              LinkedIn: <a href="https://www.linkedin.com/in/hunt-tynch">https://www.linkedin.com/in/hunt-tynch</a>
-            </h3>
+        <div className="fixed top-1/2 -translate-y-1/2 left-6 z-50">
+          <div className="flex flex-col items-center gap-6">
+            {/* Email */}
+            <a href="mailto:tynchhunt@gmail.com" target="_blank" rel="noopener noreferrer">
+              <AiFillMail className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
+            </a>
+            
+            {/* LinkedIn */}
+            <a href="https://www.linkedin.com/in/hunt-tynch" target="_blank" rel="noopener noreferrer">
+              <AiFillLinkedin className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
+            </a>
+            {/* Instagram */}
+            <a href="https://www.instagram.com/h.tynch04" target="_blank" rel="noopener noreferrer">
+              <AiFillInstagram className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
+            </a>
           </div>
         </div>
       </div>
+      {showPacman && <PacmanWithGhost/>}
     </div>
   )
 }
