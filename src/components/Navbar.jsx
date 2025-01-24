@@ -1,8 +1,6 @@
-import { Button, Dialog, DialogPanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
+import { Button } from '@headlessui/react';
+import { useEffect, useRef, useState } from 'react';
 import { AiFillInstagram, AiFillLinkedin, AiFillMail } from 'react-icons/ai';
-import { FaHome } from 'react-icons/fa';
 import PacmanToggle from './PacmanToggle';
 
 const navigation = [
@@ -36,9 +34,39 @@ const projects = [
   { title: 'Upcoming Project (ML Routing System)', description: [], tools: '...', href: '#'},
 ];
 
-
 export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(null);
+  const sectionRefs = useRef([]);
+
+  const handleScroll = () => {
+    const windowCenter = window.innerHeight / 2 + window.scrollY;
+
+    // Find the section closest to the center of the viewport
+    const closestIndex = sectionRefs.current.reduce((closest, section, index) => {
+      if (!section) return closest;
+
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionCenter = sectionTop + sectionHeight / 2;
+      const distanceToCenter = Math.abs(windowCenter - sectionCenter);
+
+      return distanceToCenter < closest.distance
+        ? { index, distance: distanceToCenter }
+        : closest;
+    }, { index: null, distance: Infinity }).index;
+
+    setActiveIndex(closestIndex);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run on initial load to set the active section
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [showPacman, setShowPacman] = useState(false);
 
   const PacmanWithGhost = () => {
@@ -147,33 +175,41 @@ export default function Example() {
       </div>
     );
   };
+  
 
   return (
     <div className="max-h-max">
       <header className="fixed inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
-            <a href="#home" className="-m-1.5 p-1.5">
+            <a href="#home" className="absolute -m-1.5 p-1.5 left-2 top-6 lg:left-8">
               <span className="sr-only">Hunt Tynch</span>
-              <p className="text-emerald-400 font-Inter font-bold text-3xl">
+              <p className="text-emerald-400 font-Inter font-bold text-2xl lg:text-3xl text-shadow-sm">
                 Hunt Tynch
               </p>
             </a>
           </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black bg-emerald-400"
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="font-Inter text-md font-semibold dark:text-gray-200 text-gray-700">
+          <div className="flex-col flex items-start absolute  top-16 left-2 lg:left-8">
+            {navigation.map((item, index) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`font-Inter md:text-lg text-sm font-semibold relative transform transition-all duration-500 hover:text-emerald-400 my-1 ${
+                  activeIndex === index
+                    ? "scale-125 text-shadow-sm text-emerald-400"
+                    : "scale-100 dark:text-gray-200 text-gray-700"
+                }`}
+              >
                 {item.name}
+                {/* Line to the left */}
+                <span
+                  className={`flex h-[2px] bg-emerald-400 transition-all duration-500 ${
+                    activeIndex === index ? "w-full" : "w-0"
+                  }`}
+                  style={{
+                    transform: "translateY(-50%)",
+                  }}
+                ></span>
               </a>
             ))}
           </div>
@@ -192,52 +228,10 @@ export default function Example() {
               </Button>
             </a>
           </div>
-          <div className="fixed right-20 z-50 top-8 lg:hidden">
+          <div className="fixed right-2 z-50 top-8 lg:hidden">
             <PacmanToggle onChange={setShowPacman} />
           </div>
         </nav>
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-300 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
-                <FaHome className="h-10 w-auto text-emerald-400"/>
-              </a>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-black bg-emerald-400"
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-emerald-400"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                  <a 
-                    href="/Hunt_Tynch_Resume.pdf" 
-                    download 
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-emerald-400"
-                  >
-                    Resume
-                  </a>
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
       </header>
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -298,7 +292,7 @@ export default function Example() {
         </div>
 
         {/* Main Content */}
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="home">
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="home" ref={(el) => (sectionRefs.current[4] = el)}>
           <div className="text-center">
             <div className="flex justify-center items-center mb-10">
             <img 
@@ -314,7 +308,7 @@ export default function Example() {
             </p>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="about">
+        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="about" href="#about" ref={(el) => (sectionRefs.current[0] = el)}>
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               About
@@ -327,7 +321,7 @@ export default function Example() {
             </p>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="skills">
+        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="skills" href="#skills" ref={(el) => (sectionRefs.current[1] = el)}>
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Skills
@@ -355,7 +349,7 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="projects">
+        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="projects" href="#projects" ref={(el) => (sectionRefs.current[2] = el)}>
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Projects
@@ -392,7 +386,7 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-10 sm:py-16 lg:py-20" id="experience">
+        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="experience" href="#experience" ref={(el) => (sectionRefs.current[3] = el)}>
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Experience
@@ -434,7 +428,7 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="fixed bottom-2 left-2 lg:top-1/2 lg:-translate-y-20 lg:left-6 z-50">
+        <div className="fixed bottom-4 left-2 lg:left-6 z-50">
           <div className="flex flex-col items-center gap-6">
             {/* Email */}
             <a href="mailto:tynchhunt@gmail.com" target="_blank" rel="noopener noreferrer">
