@@ -172,7 +172,7 @@ export default function Example() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="font-Inter text-md font-semibold text-gray-200">
+              <a key={item.name} href={item.href} className="font-Inter text-md font-semibold dark:text-gray-200 text-gray-700">
                 {item.name}
               </a>
             ))}
