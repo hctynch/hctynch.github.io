@@ -182,9 +182,9 @@ export default function Example() {
       <header className="fixed inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
-            <a href="#home" className="absolute -m-1.5 p-1.5 left-2 top-6 lg:left-8">
+            <a href="#home" className="absolute -m-1.5 p-1.5 left-2 top-8 lg:left-6">
               <span className="sr-only">Hunt Tynch</span>
-              <p className="text-emerald-400 font-Inter font-bold text-2xl lg:text-3xl text-shadow-sm">
+              <p className="text-emerald-400 font-Inter font-bold text-xl lg:text-3xl text-shadow-sm">
                 Hunt Tynch
               </p>
             </a>
@@ -290,40 +290,40 @@ export default function Example() {
             className="relative left-[calc(50%+10rem)] aspect-[1155/678] w-[28.125rem] -translate-x-1/2 rotate-[-30deg] bg-gradient-to-br from-[#facc15] to-[#f59e0b] opacity-25 sm:left-[calc(50%+25rem)] sm:w-[56.1875rem]"
           />
         </div>
-        <div className="max-w-48 md:max-w-96 lg:max-w-full">
+        <div className="flex flex-col items-end mx-20 -my-32 min-w-60 sm:mx-0 sm:max-w-full sm:items-center">
         {/* Main Content */}
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" id="home" ref={(el) => (sectionRefs.current[4] = el)}>
-          <div className="text-center">
-            <div className="flex justify-center items-center mb-10">
+        <div className="lg:max-w-2xl py-32 sm:py-44" id="home" ref={(el) => (sectionRefs.current[4] = el)}>
+          <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
+            <div className="flex justify-end lg:justify-center items-center mb-10">
             <img 
               src="/centered_pic.jpeg"
-              className="h-[250px] w-[250px] lg:w-[500px] lg:h-[500px] object-cover object-top shadow-xl rounded-full"
+              className="h-[200px] w-[200px] lg:w-[500px] lg:h-[500px] object-cover object-top shadow-xl rounded-full"
             />
             </div>
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
               Hi, I am Hunt Tynch!
             </h1>
-            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+            <p className="mt-4 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
               A senior graduating from North Carolina State University with a bachelor's degree in Computer Science.
             </p>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="about" href="#about" ref={(el) => (sectionRefs.current[0] = el)}>
-          <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
-              About
-            </h1>
-            <p className="mt-8 text-pretty text-lg font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
-              Hi, I’m Hunt Tynch; A Software Engineer passionate about backend development and building robust, scalable systems. With expertise in Java, C, and frameworks like Spring, I specialize in creating efficient APIs, data-driven applications, and server-side solutions that power seamless user experiences.
-              I earned my Bachelor’s in Computer Science from NC State University, where I honed my skills in software design, algorithms, and system architecture. My academic projects and hands-on experience have deepened my understanding of creating clean, maintainable code for real-world applications.
-              When I’m not solving coding challenges, I enjoy gaming and playing basketball, which keeps me energized and focused. I’m always excited to collaborate, tackle new technologies, and deliver impactful software solutions.
-              Check out my projects below or reach out to start a conversation—I’d love to connect!
-            </p>
-          </div>
+          <div className="max-w-60 lg:max-w-2xl -my-8 sm:-my-0 sm:py-44" id="about" href="#about" ref={(el) => (sectionRefs.current[0] = el)}>
+            <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
+              <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
+                About
+              </h1>
+                <p className="mt-4 text-balance sm:text-center text-md font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
+                  Hi, I’m Hunt Tynch; A Software Engineer passionate about backend development and building robust, scalable systems. With expertise in Java, C, and frameworks like Spring, I specialize in creating efficient APIs, data-driven applications, and server-side solutions that power seamless user experiences.
+                  I earned my Bachelor’s in Computer Science from NC State University, where I honed my skills in software design, algorithms, and system architecture. My academic projects and hands-on experience have deepened my understanding of creating clean, maintainable code for real-world applications.
+                  When I’m not solving coding challenges, I enjoy gaming and playing basketball, which keeps me energized and focused. I’m always excited to collaborate, tackle new technologies, and deliver impactful software solutions.
+                  Check out my projects below or reach out to start a conversation—I’d love to connect!
+                </p>
         </div>
-        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="skills" href="#skills" ref={(el) => (sectionRefs.current[1] = el)}>
-          <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
+        </div>
+        <div className="max-w-60 lg:max-w-2xl my-32 sm:-my-0 sm:py-44" id="skills" href="#skills" ref={(el) => (sectionRefs.current[1] = el)}>
+          <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
               Skills
             </h1>
             <div className="flex items-center justify-center">
@@ -349,9 +349,9 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="projects" href="#projects" ref={(el) => (sectionRefs.current[2] = el)}>
-          <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
+        <div className="max-w-60 lg:max-w-2xl sm:-my-0 sm:py-44" id="projects" href="#projects" ref={(el) => (sectionRefs.current[2] = el)}>
+          <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
               Projects
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
@@ -386,37 +386,42 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20" id="experience" href="#experience" ref={(el) => (sectionRefs.current[3] = el)}>
-          <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
+        <div
+          className="my-24 sm:px-0 max-w-full sm:max-w-2xl"
+          id="experience"
+          href="#experience"
+          ref={(el) => (sectionRefs.current[3] = el)}
+        >
+          <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Experience
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
-              {experience.map((experience, index) => (
+              {experience.map((exp, index) => (
                 <div
-                key={index}
-                className="w-full mx-auto rounded-lg shadow-xl bg-gray-300 p-6 transform transition-transform duration-300 hover:scale-110"  
+                  key={index}
+                  className="w-full sm:max-w-none mx-auto rounded-lg shadow-xl bg-gray-300 p-6 transform transition-transform duration-300 hover:scale-110"
                 >
                   <h2 className="text-gray-900 font-bold font-mono text-[20px]">
-                    {experience.title}
+                    {exp.title}
                   </h2>
                   <h2 className="text-gray-900 font-bold font-mono">
-                    {experience.dates}
+                    {exp.dates}
                   </h2>
                   <img
-                    src={experience.image}
-                    className="shadow-sm shadow-black rounded-xl"
+                    src={exp.image}
+                    className="shadow-sm shadow-black rounded-xl h-[200px] w-[200px] sm:h-auto sm:w-auto"
                   />
                   <h2 className="text-gray-900 font-bold font-mono">
-                    {experience.company}
+                    {exp.company}
                   </h2>
                   <h2 className="text-gray-900 font-bold font-mono">
-                    {experience.location}
+                    {exp.location}
                   </h2>
-                  <ul style={{ listStyleType: 'disc'}}>
-                    {experience.description.map((descrip, index) => (
+                  <ul style={{ listStyleType: 'disc' }}>
+                    {exp.description.map((descrip, idx) => (
                       <li
-                        key={index}
+                        key={idx}
                         className="mt-5 text-pretty text-lg font-mono text-gray-900"
                       >
                         {descrip}
@@ -428,7 +433,7 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="fixed bottom-4 left-2 lg:left-6 z-50">
+        <div className="fixed bottom-1/3 left-8 z-50">
           <div className="flex flex-col items-center gap-6">
             {/* Email */}
             <a href="mailto:tynchhunt@gmail.com" target="_blank" rel="noopener noreferrer">
