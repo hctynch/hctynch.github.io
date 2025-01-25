@@ -1,7 +1,8 @@
 import { Button } from '@headlessui/react';
 import { useEffect, useRef, useState } from 'react';
 import { AiFillInstagram, AiFillLinkedin, AiFillMail } from 'react-icons/ai';
-import PacmanToggle from './PacmanToggle';
+import { FaFileDownload } from 'react-icons/fa';
+import PacmanToggle from '../components/PacmanToggle.jsx';
 
 const navigation = [
   { name: 'About', href: '#about' },
@@ -180,21 +181,21 @@ export default function Example() {
   return (
     <div className="max-h-max">
       <header className="fixed inset-x-0 top-0 z-50">
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <a href="#home" className="absolute -m-1.5 p-1.5 left-2 top-8 lg:left-6">
+        <nav aria-label="Global" className="flex items-center justify-between p-6 sm:px-8">
+          <div className="flex sm:flex-1">
+            <a href="#home" className="absolute -m-1.5 p-1.5 left-2 top-8 sm:left-6">
               <span className="sr-only">Hunt Tynch</span>
-              <p className="text-emerald-400 font-Inter font-bold text-xl lg:text-3xl text-shadow-sm">
+              <p className="text-emerald-400 font-Inter font-bold text-xl sm:text-3xl text-shadow-sm">
                 Hunt Tynch
               </p>
             </a>
           </div>
-          <div className="flex-col flex items-start absolute  top-16 left-2 lg:left-8">
+          <div className="flex-col flex items-start absolute  top-16 left-2 sm:left-8">
             {navigation.map((item, index) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`font-Inter md:text-lg text-sm font-semibold relative transform transition-all duration-500 hover:text-emerald-400 my-1 ${
+                className={`font-Inter sm:text-lg text-sm font-semibold relative transform transition-all duration-500 hover:text-emerald-400 my-1 ${
                   activeIndex === index
                     ? "scale-125 text-shadow-sm text-emerald-400"
                     : "scale-100 dark:text-gray-200 text-gray-700"
@@ -213,27 +214,12 @@ export default function Example() {
               </a>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
-            {/* Pacman Toggle - Always visible */}
-            <PacmanToggle onChange={setShowPacman} />
-            
-            {/* Resume Button - Visible only on large screens */}
-            <a
-              href="/Hunt_Tynch_Resume.pdf"
-              download
-              className="lg:block"
-            >
-              <Button className="min-w-[150px] font-Inter hover:to-cyan-600 hover:from-emerald-700 justify-center from-emerald-500 to-cyan-500 bg-gradient-to-br text-black relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-sm shadow-gray-800">
-                Resume
-              </Button>
-            </a>
-          </div>
-          <div className="fixed right-2 z-50 top-8 lg:hidden">
-            <PacmanToggle onChange={setShowPacman} />
-          </div>
         </nav>
       </header>
-
+      <div className="fixed bottom-20 left-6">
+            {/* Pacman Toggle - Always visible */}
+            <PacmanToggle onChange={setShowPacman} />
+      </div>
       <div className="relative isolate px-6 pt-14 lg:px-8">
         {/* First Polygon */}
         <div
@@ -292,12 +278,12 @@ export default function Example() {
         </div>
         <div className="flex flex-col items-end mx-20 -my-32 min-w-60 sm:mx-0 sm:max-w-full sm:items-center">
         {/* Main Content */}
-        <div className="lg:max-w-2xl py-32 sm:py-44" id="home" ref={(el) => (sectionRefs.current[4] = el)}>
+        <div className="sm:max-w-2xl py-32 sm:py-44" id="home" ref={(el) => (sectionRefs.current[4] = el)}>
           <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
-            <div className="flex justify-end lg:justify-center items-center mb-10">
+            <div className="flex justify-end sm:justify-center items-center mb-10">
             <img 
               src="/centered_pic.jpeg"
-              className="h-[200px] w-[200px] lg:w-[500px] lg:h-[500px] object-cover object-top shadow-xl rounded-full"
+              className="h-[200px] w-[200px] sm:w-[500px] sm:h-[500px] object-cover object-top shadow-xl rounded-full"
             />
             </div>
             <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
@@ -308,9 +294,9 @@ export default function Example() {
             </p>
           </div>
         </div>
-          <div className="max-w-60 lg:max-w-2xl -my-8 sm:-my-0 sm:py-44" id="about" href="#about" ref={(el) => (sectionRefs.current[0] = el)}>
+          <div className="max-w-60 md:max-w-2xl -my-8 sm:-my-0 sm:py-44" id="about" href="#about" ref={(el) => (sectionRefs.current[0] = el)}>
             <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
-              <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
+              <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 md:text-7xl">
                 About
               </h1>
                 <p className="mt-4 text-balance sm:text-center text-md font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8">
@@ -321,13 +307,13 @@ export default function Example() {
                 </p>
         </div>
         </div>
-        <div className="max-w-60 lg:max-w-2xl my-32 sm:-my-0 sm:py-44" id="skills" href="#skills" ref={(el) => (sectionRefs.current[1] = el)}>
+        <div className="max-w-60 sm:max-w-2xl my-32 sm:-my-0 sm:py-44" id="skills" href="#skills" ref={(el) => (sectionRefs.current[1] = el)}>
           <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Skills
             </h1>
             <div className="flex items-center justify-center">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-5">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 mt-5">
                 {skills.map((skill, index) => (
                   <div
                     key={index}
@@ -349,9 +335,9 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="max-w-60 lg:max-w-2xl sm:-my-0 sm:py-44" id="projects" href="#projects" ref={(el) => (sectionRefs.current[2] = el)}>
+        <div className="max-w-60 sm:max-w-2xl sm:-my-0 sm:py-44" id="projects" href="#projects" ref={(el) => (sectionRefs.current[2] = el)}>
           <div className="flex flex-col text-start sm:justify-center sm:text-center sm:items-center">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 lg:text-7xl">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-emerald-500 sm:text-7xl">
               Projects
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-5">
@@ -448,6 +434,10 @@ export default function Example() {
             {/* Instagram */}
             <a href="https://www.instagram.com/h.tynch04" target="_blank" rel="noopener noreferrer">
               <AiFillInstagram className="text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all" />
+            </a>
+            <a href="/Hunt_Tynch_Resume.pdf" download className="flex flex-col items-center text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all">
+                <FaFileDownload />
+                <span className="text-xs sm:text-lg">Resume</span>
             </a>
           </div>
         </div>
