@@ -9,6 +9,31 @@ export default {
     extend: {
       fontFamily: 'Inter'
     },
+    keyframes: {
+      fadeIn: {
+        '0%': { opacity: .2 },
+        '100%': { opacity: 1 },
+      },
+      fadeOut: {
+        '0%': { opacity: 1 },
+        '100%': { opacity: .2 },
+      },
+      fadeIn50: {
+        '0%': { opacity: 0 },
+        '100%': { opacity: .2}
+      },
+      fadeOut50: {
+        '0%': { opacity: .2 },
+        '100%': {opacity: 0}
+      }
+
+    },
+    animation: {
+      fadeIn: 'fadeIn 0.5s ease-in-out forwards',
+      fadeOut: 'fadeOut 0.5s ease-in-out forwards',
+      fadeIn50: 'fadeIn50 0.5s ease-in-out forwards',
+      fadeOut50: 'fadeOut50 0.5s ease-in-out forwards'
+    },
   },
   plugins: [
     require('tailwindcss-textshadow'),
