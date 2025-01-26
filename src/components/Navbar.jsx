@@ -227,13 +227,13 @@ export default function Example() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000); // Simulate loading
+    setTimeout(() => setIsLoading(false), 2100); // Simulate loading
   }, []);
 
   return (
     <>
       {isLoading ? (
-        <LoadingAnimation text='Loading' />
+        <LoadingAnimation text='Hunt Tynch' />
       ) : (
         <div className='max-h-max'>
           <header className='fixed inset-x-0 top-0 z-50'>
