@@ -71,16 +71,17 @@ button:focus-visible {
   }
 }
 
+.typing-cursor {
+  display: inline-block;
+  width: 2px; /* Adjust width to your preference */
+  height: 1.5em; /* Make height proportional to the font size */
+  background-color: currentColor; /* Match the cursor color to the text color */
+  vertical-align: middle;
+  animation: blink 1.2s steps(2, start) infinite;
+}
+
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
   50% {
     opacity: 0;
   }
-}
-
-.animate-blink {
-  animation: blink 0.7s infinite;
 }

@@ -1,34 +1,39 @@
 import { useEffect, useState } from 'react';
 
-const TypingAnimation = ({ text = 'Loading...', speed = 150 }) => {
+const TypingEffect = ({ text }) => {
   const [displayedText, setDisplayedText] = useState('');
-  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (index < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + text[index]);
-        setIndex(index + 1);
-      }, speed);
+    let currentIndex = 0;
+    let timeout;
 
-      return () => clearTimeout(timeout);
-    } else if (index === text.length) {
-      // Looping the animation after a pause
-      const timeout = setTimeout(() => {
-        setDisplayedText('');
-        setIndex(0);
-      }, 1000);
+    const getRandomTimeout = (min, max) => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
 
-      return () => clearTimeout(timeout);
-    }
-  }, [index, text, speed]);
+    const typeNextCharacter = () => {
+      if (currentIndex < text.length - 1) {
+        setDisplayedText((prev) => prev + text[currentIndex]);
+        currentIndex++;
+        timeout = setTimeout(typeNextCharacter, getRandomTimeout(100, 400)); // Typing speed
+      }
+    };
+
+    typeNextCharacter(); // Start typing
+
+    return () => {
+      clearTimeout(timeout); // Cleanup timeout
+    };
+  }, [text]);
 
   return (
-    <span className='font-Inter font-bold text-xl text-emerald-500'>
-      {displayedText}
-      <span className='animate-blink'>|</span>
-    </span>
+    <div className='flex justify-center font-source font-bold text-xl text-emerald-500 items-center'>
+      <span className='relative'>
+        {displayedText}
+        <span className='typing-cursor'></span>
+      </span>
+    </div>
   );
 };
 
-export default TypingAnimation;
+export default TypingEffect;

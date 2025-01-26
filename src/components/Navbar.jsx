@@ -248,7 +248,7 @@ export default function Example() {
                   href='#home'
                   className='absolute -m-1.5 p-1.5 left-2 top-8 sm:left-6'>
                   <span className='sr-only'>Hunt Tynch</span>
-                  <p className='text-emerald-400 font-Inter font-bold text-xl sm:text-3xl text-shadow-sm'>
+                  <p className='text-emerald-400 font-source font-bold text-xl sm:text-3xl text-shadow-sm'>
                     Hunt Tynch
                   </p>
                 </a>
@@ -258,7 +258,7 @@ export default function Example() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`font-Inter sm:text-lg text-sm font-semibold relative transform transition-all duration-500 hover:text-emerald-400 my-1 ${
+                    className={`font-source sm:text-lg text-sm font-semibold relative transform transition-all duration-500 hover:text-emerald-400 my-1 ${
                       activeIndex === index
                         ? 'scale-125 text-shadow-sm text-emerald-400'
                         : 'scale-100 dark:text-gray-200 text-gray-700'
@@ -333,7 +333,7 @@ export default function Example() {
                 className='relative left-[calc(50%+10rem)] aspect-[1155/678] w-[28.125rem] -translate-x-1/2 rotate-[-30deg] bg-gradient-to-br from-[#facc15] to-[#f59e0b] opacity-25 sm:left-[calc(50%+25rem)] sm:w-[56.1875rem]'
               />
             </div>
-            <div className='flex flex-col font-Inter items-end mx-20 -my-32 min-w-60 sm:mx-0 sm:max-w-full sm:items-center'>
+            <div className='flex flex-col font-source items-end mx-20 -my-32 min-w-60 sm:mx-0 sm:max-w-full sm:items-center'>
               {/* Main Content */}
               <FadeSection>
                 <div
@@ -347,10 +347,10 @@ export default function Example() {
                         className='h-[200px] w-[200px] sm:w-[500px] sm:h-[500px] object-cover object-top shadow-xl rounded-full'
                       />
                     </div>
-                    <h1 className='text-balance text-3xl font-Inter font-semibold tracking-tight text-emerald-500 lg:text-7xl'>
+                    <h1 className='text-balance text-3xl font-source font-semibold tracking-tight text-emerald-500 lg:text-7xl'>
                       Hi, I am Hunt Tynch!
                     </h1>
-                    <p className='mt-4 text-pretty text-lg font-Inter font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8'>
+                    <p className='mt-4 text-pretty text-lg font-source font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8'>
                       A senior graduating from North Carolina State University
                       with a bachelor's degree in Computer Science.
                     </p>
@@ -364,7 +364,7 @@ export default function Example() {
                   href='#about'
                   ref={(el) => (sectionRefs.current[0] = el)}>
                   <div className='flex flex-col text-start sm:justify-center sm:text-center sm:items-center'>
-                    <h1 className='text-balance text-3xl font-Inter font-semibold tracking-tight text-emerald-500 md:text-7xl'>
+                    <h1 className='text-balance text-3xl font-source font-semibold tracking-tight text-emerald-500 md:text-7xl'>
                       About
                     </h1>
                     <p className='mt-4 text-balance sm:text-center text-md font-medium light:text-gray-500 dark:text-gray-400 sm:text-xl/8'>
@@ -418,17 +418,17 @@ export default function Example() {
                         <div
                           key={index}
                           className='w-full mx-auto rounded-lg shadow-xl hover:backdrop-blur bg-white/30 border border-white/10 px-7 py-8 transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl'>
-                          <h2 className='text-gray-900 font-bold font-Inter text-[20px]'>
+                          <h2 className='text-gray-900 font-bold font-source text-[20px]'>
                             {project.title}
                           </h2>
-                          <h2 className='text-gray-900 font-semibold font-Inter italic mt-2'>
+                          <h2 className='text-gray-900 font-semibold font-source italic mt-2'>
                             Stack: [{project.tools}]
                           </h2>
                           <ul style={{ listStyleType: 'disc' }}>
                             {project.description.map((descrip, index) => (
                               <li
                                 key={index}
-                                className='mt-5 text-pretty text-lg font-Inter font-medium text-gray-900'>
+                                className='mt-5 text-pretty text-lg font-source font-medium text-gray-900'>
                                 {descrip}
                               </li>
                             ))}
@@ -461,27 +461,27 @@ export default function Example() {
                         <div
                           key={index}
                           className='w-full mx-auto rounded-lg shadow-xl hover:backdrop-blur bg-white/30 border border-white/10 px-7 py-8 transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl'>
-                          <h2 className='text-gray-900 font-bold font-Inter text-[20px]'>
+                          <h2 className='text-gray-900 font-bold font-source text-[20px]'>
                             {exp.title}
                           </h2>
-                          <h2 className='text-gray-900 font-bold font-Inter'>
+                          <h2 className='text-gray-900 font-bold font-source'>
                             {exp.dates}
                           </h2>
                           <img
                             src={exp.image}
                             className='shadow-sm shadow-black rounded-xl h-[200px] w-[200px] sm:h-auto sm:w-auto'
                           />
-                          <h2 className='text-gray-900 font-bold font-Inter'>
+                          <h2 className='text-gray-900 font-bold font-source'>
                             {exp.company}
                           </h2>
-                          <h2 className='text-gray-900 font-bold font-Inter'>
+                          <h2 className='text-gray-900 font-bold font-source'>
                             {exp.location}
                           </h2>
                           <ul style={{ listStyleType: 'disc' }}>
                             {exp.description.map((descrip, idx) => (
                               <li
                                 key={idx}
-                                className='mt-5 text-pretty text-lg font-Inter font-medium text-gray-900'>
+                                className='mt-5 text-pretty text-lg font-source font-medium text-gray-900'>
                                 {descrip}
                               </li>
                             ))}
@@ -528,7 +528,7 @@ export default function Example() {
               </div>
             </div>
             <div className='absolute bottom-2 left-16 md:-bottom-48 md:left-1/3 md:translate-x-8 flex flex-col items-center justify-center'>
-              <footer className='font-Inter italic opacity-50 text-emerald-500 dark:text-emerald-200'>
+              <footer className='font-source italic opacity-50 text-emerald-500 dark:text-emerald-200'>
                 Made by Hunt Tynch (2025)
               </footer>
             </div>
