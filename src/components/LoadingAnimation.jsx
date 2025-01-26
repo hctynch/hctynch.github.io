@@ -13,7 +13,7 @@ const TypingEffect = ({ text }) => {
 
     const typeNextCharacter = () => {
       if (currentIndex < text.length - 1) {
-        setDisplayedText((prev) => prev + text[currentIndex]);
+        setDisplayedText((prev) => prev + text[currentIndex]); // Append the correct character
         currentIndex++;
         timeout = setTimeout(typeNextCharacter, getRandomTimeout(100, 400)); // Typing speed
       }
