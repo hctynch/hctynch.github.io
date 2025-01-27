@@ -517,9 +517,10 @@ export default function Example() {
                   <a
                     href='/Hunt_Tynch_Resume.pdf'
                     download
-                    className='flex flex-col items-center text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all'>
-                    <FaFileDownload />
-                    <span className='text-xs sm:text-lg'>Resume</span>
+                    className='flex has-tooltip flex-col items-center text-3xl lg:text-5xl opacity-70 hover:opacity-100 text-gray-500 hover:text-emerald-400 transition-all'
+                    >
+                    <FaFileDownload/>
+                    <div className='flex text-center tooltip mt-8 sm:mt-14 rounded font-source'><span className="text-sm sm:text-[20px] justify-center items-center text-center">Resume</span></div>
                   </a>
                 </div>
               </div>
